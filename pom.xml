@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.hotelbooking</groupId>
+    <artifactId>hotel-booking-api-automation</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>hotel-booking-api-automation</name>
+    <description>REST Assured + JUnit 5 API test framework for Restful-Booker</description>
+
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- 5.5.x is the stable Jackson 2 based line and works on Java 17 -->
+        <rest-assured.version>5.5.7</rest-assured.version>
+        <jackson.version>2.18.2</jackson.version>
+        <junit.version>5.11.4</junit.version>
+        <surefire.version>3.5.2</surefire.version>
+        <compiler.plugin.version>3.13.0</compiler.plugin.version>
+
+        <!-- Tests tagged "exploratory" are skipped by default.
+             Run everything with: mvn test -DexcludedGroups=none -->
+        <excludedGroups>exploratory</excludedGroups>
+    </properties>
+
+    <dependencies>
+        <!-- compile scope: the API clients in src/main use REST Assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+
+        <!-- JSON (de)serialisation of the POJOs; pinned so REST Assured uses Jackson 2 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- JUnit 5 only (no JUnit 4 / vintage engine). Includes junit-jupiter-params. -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <configuration>
+                    <excludedGroups>${excludedGroups}</excludedGroups>
+                    <trimStackTrace>false</trimStackTrace>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
