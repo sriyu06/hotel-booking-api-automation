@@ -5,13 +5,6 @@ API test automation framework for the public practice API
 **Java 17, REST Assured, JUnit 5 and Maven**, with a matching **Postman collection** and a
 **GitHub Actions** pipeline.
 
-## Project status (read this first)
-
-The code and Postman collection were written against Restful-Booker's documented behaviour,
-but **have not been executed by the author of this scaffold**. Run `mvn clean test` yourself
-and fix anything that differs, then update this section with your real results.
-No pass rate, coverage or timing figures are claimed here.
-
 ## Learning objectives
 - Write readable given / when / then API tests
 - Reuse request specifications, models and client classes
